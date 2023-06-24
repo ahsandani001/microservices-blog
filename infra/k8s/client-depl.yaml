@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # Specify the deployment version and pods in in v1
+kind: Deployment # specify the purpose of the configuration
+metadata: 
+  name: client-depl # name of the deployment
+spec: # specify how this deployment should behave
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: client
+  template: 
+    metadata: 
+      labels: 
+        app: client
+    spec: 
+      containers: 
+        - name: client
+          image: dani100/client
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: client-srv
+spec: 
+  selector: 
+    app: client
+  type: ClusterIP
+  ports: 
+    - name: client
+      protocol: TCP
+      port: 4001
+      targetPort: 4001

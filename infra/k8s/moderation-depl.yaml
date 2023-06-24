@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # Specify the deployment version and pods in in v1
+kind: Deployment # specify the purpose of the configuration
+metadata: 
+  name: moderation-depl # name of the deployment
+spec: # specify how this deployment should behave
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: moderation
+  template: 
+    metadata: 
+      labels: 
+        app: moderation
+    spec: 
+      containers: 
+        - name: moderation
+          image: dani100/moderation
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: moderation-srv
+spec: 
+  selector: 
+    app: moderation
+  type: ClusterIP
+  ports: 
+    - name: moderation
+      protocol: TCP
+      port: 4003
+      targetPort: 4003

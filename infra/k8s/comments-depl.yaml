@@ -1,0 +1,32 @@
+apiVersion: apps/v1 # Specify the deployment version and pods in in v1
+kind: Deployment # specify the purpose of the configuration
+metadata: 
+  name: comments-depl # name of the deployment
+spec: # specify how this deployment should behave
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: comments
+  template: 
+    metadata: 
+      labels: 
+        app: comments
+    spec: 
+      containers: 
+        - name: comments
+          image: dani100/comments
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: comments-srv
+spec: 
+  selector: 
+    app: comments
+  type: ClusterIP
+  ports: 
+    - name: comments
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
