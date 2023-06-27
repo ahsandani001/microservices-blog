@@ -12,7 +12,7 @@ app.get('/posts', (req, res) => {
     res.send(posts);
 })
 
-app.post('/posts', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
     const id = randomBytes(4).toString('hex');
 
     const {title} = req.body;
@@ -37,6 +37,6 @@ app.post('/events', (req, res) => {
 
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
-    console.log('v01')
+    console.log('v1000')
     console.log(`Listening on ${port}`)
 });
