@@ -9,7 +9,9 @@ This is a very straightforward and simple blog application. It is built using mi
 - Kubernetes
 - Skaffold
 
-![Architecture Diagram] ./project-diagram.jpg
+![Architecture Diagram](./project-diagram.jpg)
+
+I added the architecture diagram above to illustrate the components and their interactions in the application.
 
 ## Prerequisites
 
